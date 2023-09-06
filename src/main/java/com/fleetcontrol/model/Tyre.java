@@ -24,7 +24,7 @@ public class Tyre {
 
     private String model;
 
-    private String Size;
+    private String size;
 
     private String position;
 

@@ -4,7 +4,9 @@ import com.fleetcontrol.model.Tyre;
 import com.fleetcontrol.repository.TyreRepository;
 import com.fleetcontrol.service.TyreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TyreServiceImpl implements TyreService {
 
     @Autowired
