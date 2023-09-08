@@ -50,9 +50,9 @@ public class TyreServiceImpl implements TyreService {
         oldTyre.setModel(tyre.getModel());
         oldTyre.setSize(tyre.getSize());
         oldTyre.setVehicle(tyre.getVehicle());
-        oldTyre.setInsideTread(tyre.getInsideTread());
-        oldTyre.setMidleTread(tyre.getMidleTread());
-        oldTyre.setOutsideTread(tyre.getOutsideTread());
+//        oldTyre.setInsideTread(tyre.getInsideTread());
+//        oldTyre.setMidleTread(tyre.getMidleTread());
+//        oldTyre.setOutsideTread(tyre.getOutsideTread());
 
         return tyreRepository.save(oldTyre);
     }
