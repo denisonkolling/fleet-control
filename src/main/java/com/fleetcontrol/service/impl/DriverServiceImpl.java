@@ -1,9 +1,7 @@
 package com.fleetcontrol.service.impl;
 
 import com.fleetcontrol.model.Driver;
-import com.fleetcontrol.model.Vehicle;
 import com.fleetcontrol.repository.DriverRepository;
-import com.fleetcontrol.repository.VehicleRepository;
 import com.fleetcontrol.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
