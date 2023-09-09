@@ -21,10 +21,6 @@ public class TyreReading {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tyre_id")
-    private Tyre tyre;
-
     private LocalDateTime readingDate = LocalDateTime.now();
 
     private Double insideTread;
@@ -32,5 +28,9 @@ public class TyreReading {
     private Double midleTread;
 
     private Double outsideTread;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tyre_id")
+    private Tyre tyre;
 
 }

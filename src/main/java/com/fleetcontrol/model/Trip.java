@@ -1,12 +1,22 @@
+package com.fleetcontrol.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 @Entity
 @Table
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Trip {
 
@@ -23,5 +33,10 @@ public class Trip {
   public Long distance;
 
   public Long invoice;
+
+  @OneToMany(mappedBy = "trip", fetch = FetchType.LAZY)
+
+  @JsonIgnore
+  private List<Expense> expenses = new ArrayList<>();
 
 }
