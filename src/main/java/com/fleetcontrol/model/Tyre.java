@@ -36,12 +36,6 @@ public class Tyre {
 
     private String vehicle;
 
-//    private Double insideTread;
-//
-//    private Double midleTread;
-//
-//    private Double outsideTread;
-
     @OneToMany(mappedBy = "tyre", fetch = FetchType.LAZY)
 
     @JsonIgnore

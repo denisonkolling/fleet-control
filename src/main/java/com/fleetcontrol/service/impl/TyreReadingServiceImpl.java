@@ -18,9 +18,8 @@ public class TyreReadingServiceImpl implements TyreReadingService {
     @Autowired
     private TyreRepository tyreRepository;
 
-
     @Override
-    public TyreReading create(TyreReadingRequest form) {
+    public TyreReading createTyreReading(TyreReadingRequest form) {
         TyreReading tyreReading = new TyreReading();
         Tyre tyre = tyreRepository.findById(form.getTyreId()).get();
 

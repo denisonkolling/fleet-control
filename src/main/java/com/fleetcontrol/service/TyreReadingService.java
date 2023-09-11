@@ -5,6 +5,6 @@ import com.fleetcontrol.model.TyreReading;
 
 public interface TyreReadingService {
 
-    TyreReading create(TyreReadingRequest form);
+    TyreReading createTyreReading(TyreReadingRequest form);
 
 }
