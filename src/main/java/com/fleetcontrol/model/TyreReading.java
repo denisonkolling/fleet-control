@@ -7,19 +7,18 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tab_tyres_readings")
+@Table(name = "tyres_readings")
 
 
 public class TyreReading {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     private LocalDateTime readingDate = LocalDateTime.now();
 

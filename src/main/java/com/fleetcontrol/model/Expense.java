@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table
+@Table (name = "trip_expenses")
 
 public class Expense {
 
@@ -25,7 +25,7 @@ public class Expense {
 
   public Double value;
 
-  public Date date;
+  public Date expenseDate;
 
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "trip_id")
