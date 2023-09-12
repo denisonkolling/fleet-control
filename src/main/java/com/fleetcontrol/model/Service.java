@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "vehicle_parts")
+@Table(name = "vehicle_services")
 
-public class Part {
+public class Service {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long partId;
+    private Long serviceId;
 
-    private String partName;
+    private String serviceName;
 
-    private String partCategory;
+    private String serviceCategory;
 
-    private Double partPrice;
+    private Double servicePrice;
 }
