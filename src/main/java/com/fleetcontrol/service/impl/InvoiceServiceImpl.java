@@ -3,12 +3,15 @@ package com.fleetcontrol.service.impl;
 import com.fleetcontrol.model.Customer;
 import com.fleetcontrol.model.Invoice;
 import com.fleetcontrol.model.Item;
+import com.fleetcontrol.model.RepairOrder;
 import com.fleetcontrol.repository.CustomerRepository;
 import com.fleetcontrol.repository.InvoiceRepository;
 import com.fleetcontrol.repository.ItemRepository;
 import com.fleetcontrol.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -37,5 +40,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         return invoiceRepository.save(invoice);
 
+    }
+
+    @Override
+    public List<Invoice> getAllInvoice() {
+        return invoiceRepository.findAll();
     }
 }
