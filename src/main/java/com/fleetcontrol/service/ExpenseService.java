@@ -15,4 +15,6 @@ public interface ExpenseService {
 
     public List<Expense> getExpenseByCategory(String category);
 
+    public List<Expense> findByCategoryContaining(String string);
+
 }
