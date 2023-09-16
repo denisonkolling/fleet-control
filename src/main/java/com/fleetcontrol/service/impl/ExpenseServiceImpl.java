@@ -9,6 +9,8 @@ import com.fleetcontrol.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
 
@@ -32,4 +34,20 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         return expenseRepository.save(expense);
     }
+
+    @Override
+    public List<Expense> getAllExpense() {
+        return expenseRepository.findAll();
+    }
+
+    @Override
+    public List<Expense> getExpenseByTripId(Long tripId) {
+        return expenseRepository.findByTripId(tripId);
+    }
+
+    @Override
+    public List<Expense> getExpenseByCategory(String category) {
+        return expenseRepository.findByCategory(category);
+    }
+
 }
