@@ -1,5 +1,6 @@
 package com.fleetcontrol.controller;
 
+import com.fleetcontrol.dto.InvoiceDto;
 import com.fleetcontrol.model.Invoice;
 import com.fleetcontrol.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @PostMapping
-    public ResponseEntity<?> createInvoice(@RequestBody Invoice invoice){
-        return new ResponseEntity<>(invoiceService.createInvoice(invoice), HttpStatus.CREATED);
+    public ResponseEntity<?> createInvoice(@RequestBody InvoiceDto invoiceDto){
+        return new ResponseEntity<>(invoiceService.createInvoice(invoiceDto), HttpStatus.CREATED);
     }
 
     @GetMapping

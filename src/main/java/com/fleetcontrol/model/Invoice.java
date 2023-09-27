@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -34,8 +35,14 @@ public class Invoice {
     @JoinColumn(name = "buyer_id")
     private Customer buyer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "item_id")
+//    private Item item;
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
-    private Item item;
+    private List<Item> items;
+
+    private Double invoiceTotalValue;
 
 }

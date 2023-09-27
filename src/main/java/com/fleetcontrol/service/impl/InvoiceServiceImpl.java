@@ -1,16 +1,18 @@
 package com.fleetcontrol.service.impl;
 
-import com.fleetcontrol.model.Customer;
-import com.fleetcontrol.model.Invoice;
-import com.fleetcontrol.model.Item;
-import com.fleetcontrol.model.RepairOrder;
+import com.fleetcontrol.dto.InvoiceDto;
+import com.fleetcontrol.dto.ItemDto;
+import com.fleetcontrol.model.*;
 import com.fleetcontrol.repository.CustomerRepository;
 import com.fleetcontrol.repository.InvoiceRepository;
 import com.fleetcontrol.repository.ItemRepository;
+import com.fleetcontrol.repository.ProductRepository;
 import com.fleetcontrol.service.InvoiceService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,21 +27,43 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Autowired
     private ItemRepository itemRepository;
 
-    @Override
-    public Invoice createInvoice(Invoice form) {
-        Invoice invoice = new Invoice();
-        Customer issuer = customerRepository.findById(form.getIssuer().getId()).get();
-        Customer buyer = customerRepository.findById(form.getBuyer().getId()).get();
-        Item item = itemRepository.findById(form.getItem().getId()).get();
+    @Autowired
+    private ProductRepository productRepository;
 
-        invoice.setNumber(form.getNumber());
-        invoice.setDate(form.getDate());
+    @Override
+    public Invoice createInvoice(InvoiceDto invoiceDto) {
+        Invoice invoice = new Invoice();
+        Customer issuer = customerRepository.findById(invoiceDto.getIssuer().getId()).get();
+        Customer buyer = customerRepository.findById(invoiceDto.getBuyer().getId()).get();
+
+        invoice.setNumber(invoiceDto.getNumber());
+        invoice.setDate(invoiceDto.getDate());
         invoice.setIssuer(issuer);
         invoice.setBuyer(buyer);
-        invoice.setItem(item);
+
+        List<ItemDto> itemDtos = invoiceDto.getItems();
+
+        if (itemDtos != null && !itemDtos.isEmpty()) {
+
+            List<Item> items = new ArrayList<>();
+
+            for (ItemDto itemDto : itemDtos) {
+
+                Product product = productRepository.findById(itemDto.getProductId()).orElseThrow(() -> new EntityNotFoundException("Product not found"));
+
+                Item item = new Item();
+
+                item.setProduct(product);
+                item.setQuantity(itemDto.getQuantity());
+                item.setUnitPrice(itemDto.getUnitPrice());
+
+                items.add(item);
+            }
+
+            invoice.setItems(items);
+        }
 
         return invoiceRepository.save(invoice);
-
     }
 
     @Override

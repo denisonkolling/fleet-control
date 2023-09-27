@@ -8,29 +8,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Data
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "items")
 @Entity
 
-public class Item {
+public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private Product product;
+    private String name;
 
-    private Integer quantity;
+    private Double unitValue;
 
-    private Double unitPrice;
+    private Double weight;
 
-    @ManyToOne
-    @JsonIgnore
-    private Invoice invoice;
+    @Builder.Default
+    private boolean available = true;
 
 }
