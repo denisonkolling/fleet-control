@@ -17,15 +17,15 @@ public class Expense {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long id;
+  private Long id;
 
-  public String description;
+  private String description;
 
-  public String category;
+  private String category;
 
-  public Double value;
+  private Double value;
 
-  public Date expenseDate;
+  private Date expenseDate;
 
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "trip_id")

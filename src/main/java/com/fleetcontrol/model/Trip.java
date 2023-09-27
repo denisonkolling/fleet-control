@@ -22,21 +22,23 @@ public class Trip {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long id;
+  private Long id;
 
-  public String vehicle;
+  private String vehicle;
 
-  public String origin;
+  private String origin;
 
-  public String destination;
+  private String destination;
 
-  public Long distance;
+  private Long distance;
 
-  public Long invoice;
+  private Long invoice;
 
   @OneToMany(mappedBy = "trip", fetch = FetchType.LAZY)
 
   @JsonIgnore
   private List<Expense> expenses = new ArrayList<>();
+
+
 
 }
