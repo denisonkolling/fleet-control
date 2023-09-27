@@ -16,4 +16,6 @@ public class TripServiceImpl implements TripService {
   public Trip createTrip(Trip trip) {
     return tripRepository.save(trip);
   }
+
+
 }

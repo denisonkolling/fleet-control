@@ -9,6 +9,7 @@ import com.fleetcontrol.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,6 +33,20 @@ public class ExpenseServiceImpl implements ExpenseService {
         expense.setValue(form.getValue());
         expense.setExpenseDate(form.getExpenseDate());
 
+        List<Expense> tripExpenses = trip.getExpenses();
+
+        List<Double> expensesValue = new ArrayList<>();
+
+        for (Expense expenses: tripExpenses){
+            double expenseTotalValue = expenses.getValue();
+            expensesValue.add(expenseTotalValue);
+        }
+
+        double totalTripExpense = expensesValue.stream().mapToDouble(tripExpenseValue -> tripExpenseValue).sum();
+
+
+        trip.setTripTotalExpense(totalTripExpense);
+        tripRepository.save(trip);
         return expenseRepository.save(expense);
     }
 

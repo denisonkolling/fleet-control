@@ -34,6 +34,8 @@ public class Trip {
 
   private Long invoice;
 
+  private Double tripTotalExpense;
+
   @OneToMany(mappedBy = "trip", fetch = FetchType.LAZY)
 
   @JsonIgnore
