@@ -9,6 +9,8 @@ import com.fleetcontrol.service.TyreReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TyreReadingServiceImpl implements TyreReadingService {
 
@@ -29,5 +31,10 @@ public class TyreReadingServiceImpl implements TyreReadingService {
         tyreReading.setOutsideTread(form.getOutsideTread());
 
         return tyreReadingRepository.save(tyreReading);
+    }
+
+    @Override
+    public List<TyreReading> getReadingsByTyreId(Long tyreId) {
+        return tyreReadingRepository.findByTyreId(tyreId);
     }
 }
