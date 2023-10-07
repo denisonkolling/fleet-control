@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface TripService {
 
-  public Trip createTrip(Trip trip);
+  Trip createTrip(Trip trip);
 
 }

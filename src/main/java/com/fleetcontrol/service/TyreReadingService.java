@@ -10,6 +10,6 @@ public interface TyreReadingService {
 
     TyreReading createTyreReading(TyreReadingRequest form);
 
-    public List<TyreReading> getReadingsByTyreId(Long tyreId);
+    List<TyreReading> getReadingsByTyreId(Long tyreId);
 
 }

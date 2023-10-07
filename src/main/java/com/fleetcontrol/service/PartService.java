@@ -4,5 +4,5 @@ import com.fleetcontrol.model.Part;
 
 public interface PartService {
 
-    public Part createPart(Part part);
+    Part createPart(Part part);
 }

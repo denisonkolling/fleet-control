@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface VehicleService {
 
-    public Vehicle createVehicle(Vehicle vehicle);
+    Vehicle createVehicle(Vehicle vehicle);
 
-    public List<Vehicle> getAllVehicle();
+    List<Vehicle> getAllVehicle();
 
-    public Vehicle getVehicleById(Long id);
+    Vehicle getVehicleById(Long id);
 
-    public String deleteVehicle(Long id);
+    String deleteVehicle(Long id);
 
-    public Vehicle editVehicle(Vehicle vehicle, Long id);
+    Vehicle editVehicle(Vehicle vehicle, Long id);
 
 
 }

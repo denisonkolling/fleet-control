@@ -4,5 +4,5 @@ import com.fleetcontrol.model.Customer;
 
 public interface CustomerService {
 
-    public Customer createCustomer(Customer customer);
+    Customer createCustomer(Customer customer);
 }

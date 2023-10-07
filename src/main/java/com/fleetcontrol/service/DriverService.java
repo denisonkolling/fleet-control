@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface DriverService {
 
-    public Driver createDriver(Driver driver);
+    Driver createDriver(Driver driver);
 
-    public List<Driver> getAllDriver();
+    List<Driver> getAllDriver();
 
-    public Driver getDriverById(Long id);
+    Driver getDriverById(Long id);
 
-    public Driver findByLicenseId(String licenseId);
+    Driver findByLicenseId(String licenseId);
 
-    public String deleteDriver(Long id);
+    String deleteDriver(Long id);
 
-    public Driver editDriver(Driver driver, Long id);
+    Driver editDriver(Driver driver, Long id);
 }

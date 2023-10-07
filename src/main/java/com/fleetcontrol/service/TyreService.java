@@ -9,13 +9,13 @@ import java.util.List;
 
 public interface TyreService {
 
-    public Tyre createTyre(Tyre tyre);
+    Tyre createTyre(Tyre tyre);
 
-    public List<Tyre> getAllTyres();
+    List<Tyre> getAllTyres();
 
-    public Tyre getTyreById(Long id);
+    Tyre getTyreById(Long id);
 
-    public String deleteTyre(Long id);
+    String deleteTyre(Long id);
 
-    public Tyre editTyre(Tyre tyre, Long id);
+    Tyre editTyre(Tyre tyre, Long id);
 }

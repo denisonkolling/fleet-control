@@ -10,5 +10,5 @@ public interface RepairOrderService {
 
     RepairOrder createRepairOrder(RepairOrderOpenRequest form);
 
-    public List<RepairOrder> getAllRepairOrder();
+    List<RepairOrder> getAllRepairOrder();
 }

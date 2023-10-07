@@ -5,6 +5,6 @@ import com.fleetcontrol.model.Product;
 
 public interface ProductService {
 
-    public Product createProduct(Product product);
+    Product createProduct(Product product);
 
 }

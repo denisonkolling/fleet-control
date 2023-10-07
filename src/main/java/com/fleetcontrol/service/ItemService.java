@@ -4,6 +4,6 @@ import com.fleetcontrol.model.Item;
 
 public interface ItemService {
 
-    public Item createItem(Item item);
+    Item createItem(Item item);
 
 }
