@@ -28,4 +28,5 @@ public class InvoiceDto {
     private Customer buyer;
 
     private List<ItemDto> items;
+
 }

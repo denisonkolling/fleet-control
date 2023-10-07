@@ -47,6 +47,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
             List<Item> items = new ArrayList<>();
 
+            List<Double> itemsValue = new ArrayList<>();
+
             for (ItemDto itemDto : itemDtos) {
 
                 Product product = productRepository.findById(itemDto.getProductId()).orElseThrow(() -> new EntityNotFoundException("Product not found"));
@@ -58,8 +60,15 @@ public class InvoiceServiceImpl implements InvoiceService {
                 item.setUnitPrice(itemDto.getUnitPrice());
 
                 items.add(item);
+
+                double itemTotalValue = item.getUnitPrice() * item.getQuantity();
+
+                itemsValue.add(itemTotalValue);
             }
 
+            double totalInvoiceValue = itemsValue.stream().mapToDouble(itemsTotalValue -> itemsTotalValue).sum();
+
+            invoice.setInvoiceTotalValue(totalInvoiceValue);
             invoice.setItems(items);
         }
 

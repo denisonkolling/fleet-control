@@ -46,6 +46,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 
         trip.setTripTotalExpense(totalTripExpense);
+
         tripRepository.save(trip);
         return expenseRepository.save(expense);
     }
