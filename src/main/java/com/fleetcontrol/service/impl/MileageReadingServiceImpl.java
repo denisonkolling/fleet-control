@@ -42,4 +42,15 @@ public class MileageReadingServiceImpl implements MileageReadingService {
 
         return mileageReadingRepository.save(mileageReading);
     }
+
+// ### Continuar implementação após concluir consulta Tabela Veículos ###
+    @Override
+    public List<MileageReading> getReadingsByVehiclePlate(String vehiclePlate) {
+        return mileageReadingRepository.findByVehiclePlate(vehiclePlate);
+    }
+
+    @Override
+    public List<MileageReading> getReadingsByVehicleId(Long vehicleId) {
+        return mileageReadingRepository.findByVehicleId(vehicleId);
+    }
 }

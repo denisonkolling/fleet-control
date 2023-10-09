@@ -17,4 +17,8 @@ public interface MileageReadingRepository extends JpaRepository<MileageReading, 
             @Param("vehicle") Vehicle vehicle,
             @Param("readingDate") LocalDateTime readingDate
     );
+
+    List<MileageReading> findByVehiclePlate(String vehiclePlate);
+
+    List<MileageReading> findByVehicleId(Long vehicleId);
 }
