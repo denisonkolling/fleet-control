@@ -23,9 +23,9 @@ public class InvoiceDto {
 
     private LocalDate date;
 
-    private Customer issuer;
+    private Long issuerId;
 
-    private Customer buyer;
+    private Long buyerId;
 
     private List<ItemDto> items;
 

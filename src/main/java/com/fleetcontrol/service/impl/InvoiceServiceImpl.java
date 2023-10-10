@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -33,8 +34,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice createInvoice(InvoiceDto invoiceDto) {
         Invoice invoice = new Invoice();
-        Customer issuer = customerRepository.findById(invoiceDto.getIssuer().getId()).get();
-        Customer buyer = customerRepository.findById(invoiceDto.getBuyer().getId()).get();
+
+        Customer issuer = customerRepository.findById(invoiceDto.getIssuerId())
+                .orElseThrow(() -> new IllegalArgumentException("Issuer not found"));
+        Customer buyer = customerRepository.findById(invoiceDto.getBuyerId())
+                .orElseThrow(() -> new IllegalArgumentException("Buyer not found"));
 
         invoice.setNumber(invoiceDto.getNumber());
         invoice.setDate(invoiceDto.getDate());
