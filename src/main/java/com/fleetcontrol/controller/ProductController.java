@@ -16,14 +16,18 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    private ResponseEntity<?> createProduct(@RequestBody Product product){
+    public ResponseEntity<?> createProduct(@RequestBody Product product){
         return new ResponseEntity<>(productService.createProduct(product), HttpStatus.CREATED);
     }
 
     @GetMapping
-    private ResponseEntity<?> getAllProducts(){
+    public ResponseEntity<?> getAllProducts(){
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public  ResponseEntity<?> getProductById(@PathVariable Long id){
+        return new ResponseEntity<>(productService.getProductById(id), HttpStatus.OK);
+    }
 
 }
