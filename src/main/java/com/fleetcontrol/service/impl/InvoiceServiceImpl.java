@@ -83,4 +83,14 @@ public class InvoiceServiceImpl implements InvoiceService {
     public List<Invoice> getAllInvoice() {
         return invoiceRepository.findAll();
     }
+
+    @Override
+    public Invoice getInvoiceById(Long id) {
+        return invoiceRepository.findById(id).get();
+    }
+
+    @Override
+    public Invoice getInvoiceByNumber(Long id) {
+        return invoiceRepository.findByNumber(id);
+    }
 }

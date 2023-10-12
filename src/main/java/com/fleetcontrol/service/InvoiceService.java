@@ -11,4 +11,8 @@ public interface InvoiceService {
 
     List<Invoice> getAllInvoice();
 
+    Invoice getInvoiceById(Long id);
+
+    Invoice getInvoiceByNumber(Long id);
+
 }

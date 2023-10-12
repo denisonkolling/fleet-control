@@ -3,6 +3,7 @@ package com.fleetcontrol.controller;
 import com.fleetcontrol.dto.InvoiceDto;
 import com.fleetcontrol.model.Invoice;
 import com.fleetcontrol.service.InvoiceService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +24,15 @@ public class InvoiceController {
     @GetMapping
     private ResponseEntity<?> getAllInvoice(){
         return new ResponseEntity<>(invoiceService.getAllInvoice(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    private ResponseEntity<?> getInvoiceById(@PathVariable Long id){
+        return new ResponseEntity<>(invoiceService.getInvoiceById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/number/{invoiceNumber}")
+    public ResponseEntity<?> getInvoiceByNumber(Long invoiceNumber){
+        return new ResponseEntity<>(invoiceService.getInvoiceByNumber(invoiceNumber), HttpStatus.OK);
     }
 }
