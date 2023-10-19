@@ -10,6 +10,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     public List<Expense> findByTripId(Long tripId);
 
+    @Query("SELECT c from Expense c WHERE c.category ILIKE CONCAT ('%', :category, '%')")
     public List<Expense> findByCategory(String category);
 
     public List<Expense> findByCategoryContaining(String string);

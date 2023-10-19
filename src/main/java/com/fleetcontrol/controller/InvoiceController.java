@@ -1,9 +1,7 @@
 package com.fleetcontrol.controller;
 
 import com.fleetcontrol.dto.InvoiceDto;
-import com.fleetcontrol.model.Invoice;
 import com.fleetcontrol.service.InvoiceService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

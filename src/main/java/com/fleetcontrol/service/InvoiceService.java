@@ -13,6 +13,7 @@ public interface InvoiceService {
 
     Invoice getInvoiceById(Long id);
 
+//    TODO: Implementar LIST no retorno do metodo getInvoiceByNumber -> pode haver mais de uma nota com mesmo número
     Invoice getInvoiceByNumber(Long id);
 
 }
