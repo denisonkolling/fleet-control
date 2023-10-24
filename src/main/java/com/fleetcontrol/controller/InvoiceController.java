@@ -14,6 +14,7 @@ public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
 
+
     @PostMapping
     public ResponseEntity<?> createInvoice(@RequestBody InvoiceDto invoiceDto){
         return new ResponseEntity<>(invoiceService.createInvoice(invoiceDto), HttpStatus.CREATED);
@@ -30,7 +31,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/number/{invoiceNumber}")
-    public ResponseEntity<?> getInvoiceByNumber(Long invoiceNumber){
+    public ResponseEntity<?> getInvoiceByNumber(@PathVariable Long invoiceNumber){
         return new ResponseEntity<>(invoiceService.getInvoiceByNumber(invoiceNumber), HttpStatus.OK);
     }
 }

@@ -2,6 +2,7 @@ package com.fleetcontrol.service.impl;
 
 import com.fleetcontrol.dto.InvoiceDto;
 import com.fleetcontrol.dto.ItemDto;
+import com.fleetcontrol.infra.InvoiceNotFoundException;
 import com.fleetcontrol.model.*;
 import com.fleetcontrol.repository.CustomerRepository;
 import com.fleetcontrol.repository.InvoiceRepository;
@@ -90,7 +91,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public Invoice getInvoiceByNumber(Long id) {
-        return invoiceRepository.findByNumber(id);
+    public Invoice getInvoiceByNumber(Long invoiceNumber) {
+        Invoice invoice = invoiceRepository.findByNumber(invoiceNumber);
+        if (invoice != null) {
+            return invoice;
+        }
+        throw new InvoiceNotFoundException("Invoice not found with number: " + invoiceNumber);
     }
 }
