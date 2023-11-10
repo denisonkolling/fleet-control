@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -25,11 +26,11 @@ public class Driver {
 
     private String lastName;
 
-    private Date birthday;
+    private LocalDate birthday;
 
     private String licenseId;
 
-    private Date expiryDate;
+    private LocalDate expiryDate;
 
     private String licenseClass;
 
