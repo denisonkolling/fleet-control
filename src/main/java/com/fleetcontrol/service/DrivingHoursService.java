@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DrivingHoursService {
 
-    DrivingHours createDrivingHours(DrivingHours form);
+    DrivingHours createDrivingHours(DrivingHours drivingHours);
 
     List<DrivingHours> getAllDrivingHours();
 

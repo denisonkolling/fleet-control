@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,13 +26,13 @@ public class DrivingHours {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
-    private List<DateFormat> startDrivingTime = new ArrayList<>();
+    private List<LocalDateTime> startDrivingTime = new ArrayList<>();
 
-    private List<DateFormat> endDrivingTime = new ArrayList<>();
+    private List<LocalDateTime> endDrivingTime = new ArrayList<>();
 
 
 }
