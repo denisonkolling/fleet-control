@@ -43,4 +43,9 @@ public class DriverController {
         return new ResponseEntity<>(driverService.findByLicenseId(licenseId), HttpStatus.OK);
     };
 
+    @GetMapping("/driver/name/{name}")
+    public ResponseEntity<?> findByName(@PathVariable String name){
+        return new ResponseEntity<>(driverService.findByName(name), HttpStatus.OK);
+    }
+
 }

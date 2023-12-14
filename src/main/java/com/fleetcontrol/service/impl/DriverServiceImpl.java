@@ -59,4 +59,9 @@ public class DriverServiceImpl implements DriverService {
 
         return driverRepository.save(oldDriver);
     }
+
+    @Override
+    public Driver findByName(String name) {
+        return driverRepository.findByFirstNameOrLastName(name);
+    }
 }

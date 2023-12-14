@@ -18,4 +18,6 @@ public interface DriverService {
     String deleteDriver(Long id);
 
     Driver editDriver(Driver driver, Long id);
+
+    Driver findByName(String name);
 }
