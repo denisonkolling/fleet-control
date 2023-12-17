@@ -35,6 +35,10 @@ public class MileageReadingServiceImpl implements MileageReadingService {
             }
         }
 
+        vehicle.setMileage(form.getReadingMiles());
+
+        vehicleRepository.save(vehicle);
+
         MileageReading mileageReading = new MileageReading();
         mileageReading.setVehicle(vehicle);
         mileageReading.setReadingDate(form.getReadingDate());
