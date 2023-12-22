@@ -14,7 +14,7 @@ public class DriverController {
     private DriverService driverService;
 
     @PostMapping("/driver")
-    public ResponseEntity<?> createDriver(@RequestBody Driver driver){
+    public ResponseEntity<?> createDriver(@RequestBody Driver driver) {
         return new ResponseEntity<>(driverService.createDriver(driver), HttpStatus.CREATED);
     }
 
@@ -24,12 +24,12 @@ public class DriverController {
     }
 
     @GetMapping("/driver/{id}")
-    public ResponseEntity<?> getDriverById(@PathVariable Long id){
+    public ResponseEntity<?> getDriverById(@PathVariable Long id) {
         return new ResponseEntity<>(driverService.getDriverById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/driver/{id}")
-    public ResponseEntity<?> deleteDriver(@PathVariable Long id){
+    public ResponseEntity<?> deleteDriver(@PathVariable Long id) {
         return new ResponseEntity<>(driverService.deleteDriver(id), HttpStatus.OK);
     }
 
@@ -39,12 +39,12 @@ public class DriverController {
     }
 
     @GetMapping("/driver/license/{licenseId}")
-    public ResponseEntity<?> findByLicenseId(@PathVariable String licenseId){
+    public ResponseEntity<?> findByLicenseId(@PathVariable String licenseId) {
         return new ResponseEntity<>(driverService.findByLicenseId(licenseId), HttpStatus.OK);
-    };
+    }
 
     @GetMapping("/driver/name/{name}")
-    public ResponseEntity<?> findByName(@PathVariable String name){
+    public ResponseEntity<?> findByName(@PathVariable String name) {
         return new ResponseEntity<>(driverService.findByName(name), HttpStatus.OK);
     }
 

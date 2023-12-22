@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "vehicle_repair_orders")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
-public class RepairOrder {
+public class ServiceOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

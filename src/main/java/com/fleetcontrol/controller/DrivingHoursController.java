@@ -15,7 +15,7 @@ public class DrivingHoursController {
     DrivingHoursService drivingHoursService;
 
     @PostMapping
-    public ResponseEntity<?> createDrivingHours(@RequestBody DrivingHours drivingHours){
+    public ResponseEntity<?> createDrivingHours(@RequestBody DrivingHours drivingHours) {
         return new ResponseEntity<>(drivingHoursService.createDrivingHours(drivingHours), HttpStatus.CREATED);
     }
 

@@ -16,22 +16,22 @@ public class InvoiceController {
 
 
     @PostMapping
-    public ResponseEntity<?> createInvoice(@RequestBody InvoiceDto invoiceDto){
+    public ResponseEntity<?> createInvoice(@RequestBody InvoiceDto invoiceDto) {
         return new ResponseEntity<>(invoiceService.createInvoice(invoiceDto), HttpStatus.CREATED);
     }
 
     @GetMapping
-    private ResponseEntity<?> getAllInvoice(){
+    private ResponseEntity<?> getAllInvoice() {
         return new ResponseEntity<>(invoiceService.getAllInvoice(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<?> getInvoiceById(@PathVariable Long id){
+    private ResponseEntity<?> getInvoiceById(@PathVariable Long id) {
         return new ResponseEntity<>(invoiceService.getInvoiceById(id), HttpStatus.OK);
     }
 
     @GetMapping("/number/{invoiceNumber}")
-    public ResponseEntity<?> getInvoiceByNumber(@PathVariable Long invoiceNumber){
+    public ResponseEntity<?> getInvoiceByNumber(@PathVariable Long invoiceNumber) {
         return new ResponseEntity<>(invoiceService.getInvoiceByNumber(invoiceNumber), HttpStatus.OK);
     }
 }

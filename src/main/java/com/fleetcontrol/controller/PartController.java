@@ -18,7 +18,7 @@ public class PartController {
     private PartService partService;
 
     @PostMapping
-    private ResponseEntity<?> createPart(@RequestBody Part part){
+    private ResponseEntity<?> createPart(@RequestBody Part part) {
         return new ResponseEntity<>(partService.createPart(part), HttpStatus.CREATED);
     }
 }

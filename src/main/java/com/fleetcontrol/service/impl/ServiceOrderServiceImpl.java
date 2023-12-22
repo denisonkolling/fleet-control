@@ -1,23 +1,22 @@
 package com.fleetcontrol.service.impl;
 
-import com.fleetcontrol.dto.RepairOrderOpenRequest;
-import com.fleetcontrol.model.Driver;
+import com.fleetcontrol.dto.ServiceOrderRequest;
 import com.fleetcontrol.model.Part;
-import com.fleetcontrol.model.RepairOrder;
+import com.fleetcontrol.model.ServiceOrder;
 import com.fleetcontrol.model.Service;
 import com.fleetcontrol.repository.PartRepository;
-import com.fleetcontrol.repository.RepairOrderRepository;
+import com.fleetcontrol.repository.ServiceOrderRepository;
 import com.fleetcontrol.repository.ServiceRepository;
-import com.fleetcontrol.service.RepairOrderService;
+import com.fleetcontrol.service.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class RepairOrderServiceImpl implements RepairOrderService {
+public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Autowired
-    private RepairOrderRepository repairOrderRepository;
+    private ServiceOrderRepository serviceOrderRepository;
 
     @Autowired
     private ServiceRepository serviceRepository;
@@ -26,8 +25,8 @@ public class RepairOrderServiceImpl implements RepairOrderService {
     private PartRepository partRepository;
 
     @Override
-    public RepairOrder createRepairOrder(RepairOrderOpenRequest form) {
-        RepairOrder repairOrder = new RepairOrder();
+    public ServiceOrder createServiceOrder(ServiceOrderRequest form) {
+        ServiceOrder repairOrder = new ServiceOrder();
         Service service = serviceRepository.findById(form.getServiceId()).get();
         Part part = partRepository.findById(form.getPartId()).get();
 
@@ -36,12 +35,12 @@ public class RepairOrderServiceImpl implements RepairOrderService {
         repairOrder.setOpenDate(form.getOpenDate());
         repairOrder.setPlate(form.getPlate());
 
-        return repairOrderRepository.save(repairOrder);
+        return serviceOrderRepository.save(repairOrder);
     }
 
     @Override
-    public List<RepairOrder> getAllRepairOrder() {
-        return repairOrderRepository.findAll();
+    public List<ServiceOrder> getAllServiceOrder() {
+        return serviceOrderRepository.findAll();
     }
 
 

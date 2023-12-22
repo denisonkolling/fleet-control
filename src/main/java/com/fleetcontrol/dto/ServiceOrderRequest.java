@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class RepairOrderOpenRequest {
+public class ServiceOrderRequest {
 
     private String plate;
 

@@ -17,18 +17,18 @@ public class MileageReadingController {
     private MileageReadingService mileageReadingService;
 
     @PostMapping
-    public ResponseEntity<?> createMileageReading(@RequestBody MileageReadingRequest form){
+    public ResponseEntity<?> createMileageReading(@RequestBody MileageReadingRequest form) {
         return new ResponseEntity<>(mileageReadingService.createMileageReading(form), HttpStatus.CREATED);
     }
 
     //TODO Implementar Placa Veículo na Consulta da KM -> Consultar pela placa e buscar ID correspondente na tabela de Veículos
     @GetMapping("/vehicle-plate/{vehiclePlate}")
-    public ResponseEntity<?> getReadingsByVehicle(@PathVariable String vehiclePlate){
+    public ResponseEntity<?> getReadingsByVehicle(@PathVariable String vehiclePlate) {
         return new ResponseEntity<>(mileageReadingService.getReadingsByVehiclePlate(vehiclePlate), HttpStatus.OK);
     }
 
     @GetMapping("/vehicle-id/{vehicleId}")
-    public ResponseEntity<?> getReadingsByVehicleId(@PathVariable Long vehicleId){
+    public ResponseEntity<?> getReadingsByVehicleId(@PathVariable Long vehicleId) {
         return new ResponseEntity<>(mileageReadingService.getReadingsByVehicleId(vehicleId), HttpStatus.OK);
     }
 }
