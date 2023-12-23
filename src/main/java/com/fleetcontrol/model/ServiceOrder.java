@@ -7,20 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
-@Table(name = "vehicle_repair_orders")
+@Table(name = "vehicle_service_orders")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class ServiceOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long workOrderId;
+    private Long id;
 
     private String plate;
 
@@ -28,12 +29,12 @@ public class ServiceOrder {
 
     private LocalDateTime closeDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_id")
-    private Service service;
+    private List<ServiceOrderService> services;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parts_id")
-    private Part part;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "part_id")
+    private List<ServiceOrderPart> parts;
 
 }

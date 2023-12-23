@@ -1,6 +1,7 @@
 package com.fleetcontrol.controller;
 
 import com.fleetcontrol.dto.ServiceOrderRequest;
+import com.fleetcontrol.dto.ServiceOrderRequestDTO;
 import com.fleetcontrol.service.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ public class ServiceOrderController {
     private ServiceOrderService serviceOrderService;
 
     @PostMapping
-    private ResponseEntity<?> createServiceOrder(@RequestBody ServiceOrderRequest form){
+    private ResponseEntity<?> createServiceOrder(@RequestBody ServiceOrderRequestDTO form){
         return new ResponseEntity<>(serviceOrderService.createServiceOrder(form), HttpStatus.CREATED);
     }
 
