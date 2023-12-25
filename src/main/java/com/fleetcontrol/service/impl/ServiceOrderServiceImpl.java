@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @org.springframework.stereotype.Service
 public class ServiceOrderServiceImpl implements ServiceOrderService {
 
@@ -29,6 +28,12 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Autowired
     private PartRepository partRepository;
+
+    @Autowired
+    private ServiceOrderServiceRepository serviceOrderServiceRepository;
+
+    @Autowired
+    private ServiceOrderPartRepository serviceOrderPartRepository;
 
 
     @Override
@@ -55,6 +60,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
                 serviceOrderService.setUnitPrice(serviceDTO.getUnitPrice());
 
                 services.add(serviceOrderService);
+
             }
 
             serviceOrder.setServices(services);
@@ -76,6 +82,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
                 serviceOrderPart.setUnitPrice(partDTO.getUnitPrice());
 
                 parts.add(serviceOrderPart);
+
             }
 
             serviceOrder.setParts(parts);
@@ -86,6 +93,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
         serviceOrder.setPlate(form.getPlate());
 
         return serviceOrderRepository.save(serviceOrder);
+
     }
 
 

@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,8 +32,9 @@ public class ServiceOrderService {
 
     private Double unitPrice;
 
-    @ManyToOne
+    @ManyToMany
+    @JoinColumn(name = "service_orders_id")
     @JsonIgnore
-    private ServiceOrder serviceOrder;
+    private List<ServiceOrder> serviceOrder;
 
 }

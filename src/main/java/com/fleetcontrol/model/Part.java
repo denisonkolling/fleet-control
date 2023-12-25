@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "vehicle_parts")
+@Table(name = "parts")
 
 public class Part {
 

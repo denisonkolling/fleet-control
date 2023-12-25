@@ -1,12 +1,14 @@
 package com.fleetcontrol.model;
 
-        import com.fasterxml.jackson.annotation.JsonIgnore;
-        import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-        import jakarta.persistence.*;
-        import lombok.AllArgsConstructor;
-        import lombok.Builder;
-        import lombok.Data;
-        import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,14 +25,16 @@ public class ServiceOrderPart {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "part_id")
     private Part part;
 
     private Integer quantity;
 
     private Double unitPrice;
 
-    @ManyToOne
+    @ManyToMany
+    @JoinColumn(name = "service_orders_id")
     @JsonIgnore
-    private ServiceOrder serviceOrder;
+    private List<ServiceOrder> serviceOrder;
 
 }

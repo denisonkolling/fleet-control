@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "vehicle_service_orders")
+@Table(name = "service_orders")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class ServiceOrder {
@@ -29,11 +29,11 @@ public class ServiceOrder {
 
     private LocalDateTime closeDate;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "service_id")
     private List<ServiceOrderService> services;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "part_id")
     private List<ServiceOrderPart> parts;
 
