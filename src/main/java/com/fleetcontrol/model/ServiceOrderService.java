@@ -26,14 +26,14 @@ public class ServiceOrderService {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "service_id")
     private Service service;
 
     private Integer quantity;
 
     private Double unitPrice;
 
-    @ManyToMany
-    @JoinColumn(name = "service_orders_id")
+    @ManyToMany(mappedBy = "services")
     @JsonIgnore
     private List<ServiceOrder> serviceOrder;
 

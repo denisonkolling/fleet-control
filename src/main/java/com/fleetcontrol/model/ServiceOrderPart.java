@@ -32,8 +32,7 @@ public class ServiceOrderPart {
 
     private Double unitPrice;
 
-    @ManyToMany
-    @JoinColumn(name = "service_orders_id")
+    @ManyToMany(mappedBy = "parts")
     @JsonIgnore
     private List<ServiceOrder> serviceOrder;
 

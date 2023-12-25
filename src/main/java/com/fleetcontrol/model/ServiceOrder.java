@@ -30,11 +30,15 @@ public class ServiceOrder {
     private LocalDateTime closeDate;
 
     @ManyToMany(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "service_id")
+    @JoinTable(name = "service_orders_services",
+            joinColumns = @JoinColumn(name = "service_order_fk"),
+            inverseJoinColumns = @JoinColumn(name = "service_order_service_fk"))
     private List<ServiceOrderService> services;
 
     @ManyToMany(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "part_id")
+    @JoinTable(name = "service_orders_parts",
+            joinColumns = @JoinColumn(name = "service_order_fk"),
+            inverseJoinColumns = @JoinColumn(name = "service_order_part_fk"))
     private List<ServiceOrderPart> parts;
 
 }
