@@ -1,5 +1,6 @@
 package com.fleetcontrol;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,12 @@ public class FleetControlApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FleetControlApplication.class, args);
+	}
+
+	@Bean
+	public ModelMapper getModelMapper() {
+		var mapper = new ModelMapper();
+		return mapper;
 	}
 
 	@Bean

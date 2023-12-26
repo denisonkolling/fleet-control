@@ -1,9 +1,7 @@
 package com.fleetcontrol.service.impl;
 
 
-import com.fleetcontrol.dto.ServiceOrderPartDTO;
-import com.fleetcontrol.dto.ServiceOrderRequestDTO;
-import com.fleetcontrol.dto.ServiceOrderServiceDTO;
+import com.fleetcontrol.dto.*;
 import com.fleetcontrol.model.Part;
 import com.fleetcontrol.model.Service;
 import com.fleetcontrol.model.ServiceOrder;
@@ -12,6 +10,7 @@ import com.fleetcontrol.repository.*;
 
 import com.fleetcontrol.service.ServiceOrderService;
 import jakarta.persistence.EntityNotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Autowired
     private PartRepository partRepository;
-
 
     @Override
     public ServiceOrder createServiceOrder(ServiceOrderRequestDTO form) {
@@ -94,7 +92,69 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
 
     @Override
-    public List<ServiceOrder> getAllServiceOrder() {
-        return serviceOrderRepository.findAll();
+    public List<ServiceOrderResponse> getAllServiceOrder() {
+
+        List<ServiceOrder> orders = serviceOrderRepository.findAll();
+
+        List<ServiceOrderResponse> serviceOrderResponses = new ArrayList<>();
+
+        for (ServiceOrder serviceOrders : orders) {
+
+            ServiceOrderResponse serviceOrderResponse = new ServiceOrderResponse();
+
+            List<com.fleetcontrol.model.ServiceOrderService> services = serviceOrders.getServices();
+
+            List<ServiceOrderPart> parts = serviceOrders.getParts();
+
+            if (services != null && !services.isEmpty()) {
+
+                List<ServiceOrderServiceResponse> servicesResponse = new ArrayList<>();
+
+                for (com.fleetcontrol.model.ServiceOrderService serviceOrdersServices : services) {
+
+                    ServiceOrderServiceResponse serviceOrderServiceResponse = new ServiceOrderServiceResponse();
+
+                    serviceOrderServiceResponse.setServiceId(serviceOrdersServices.getService().getId());
+                    serviceOrderServiceResponse.setName(serviceOrdersServices.getService().getServiceName());
+                    serviceOrderServiceResponse.setQuantity(serviceOrdersServices.getQuantity());
+                    serviceOrderServiceResponse.setUnitPrice(serviceOrdersServices.getUnitPrice());
+                    servicesResponse.add(serviceOrderServiceResponse);
+                }
+
+                serviceOrderResponse.setServices(servicesResponse);
+
+            }
+
+            if (parts != null && !parts.isEmpty()) {
+
+                List<ServiceOrderPartResponse> partsResponse = new ArrayList<>();
+
+                for (ServiceOrderPart serviceOrdersParts : parts) {
+
+                    ServiceOrderPartResponse serviceOrderPartResponse = new ServiceOrderPartResponse();
+
+                    serviceOrderPartResponse.setPartId(serviceOrdersParts.getPart().getId());
+                    serviceOrderPartResponse.setName(serviceOrdersParts.getPart().getPartName());
+                    serviceOrderPartResponse.setQuantity(serviceOrdersParts.getQuantity());
+                    serviceOrderPartResponse.setUnitPrice(serviceOrdersParts.getUnitPrice());
+                    partsResponse.add(serviceOrderPartResponse);
+                }
+
+                serviceOrderResponse.setParts(partsResponse);
+
+            }
+
+            serviceOrderResponse.setPlate(serviceOrders.getPlate());
+            serviceOrderResponse.setOpenDate(serviceOrders.getOpenDate());
+            serviceOrderResponse.setId(serviceOrders.getId());
+
+
+            serviceOrderResponses.add(serviceOrderResponse);
+        }
+
+        return serviceOrderResponses;
+
     }
+
 }
+
