@@ -29,12 +29,6 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     @Autowired
     private PartRepository partRepository;
 
-    @Autowired
-    private ServiceOrderServiceRepository serviceOrderServiceRepository;
-
-    @Autowired
-    private ServiceOrderPartRepository serviceOrderPartRepository;
-
 
     @Override
     public ServiceOrder createServiceOrder(ServiceOrderRequestDTO form) {
@@ -55,6 +49,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
                 com.fleetcontrol.model.ServiceOrderService serviceOrderService = new com.fleetcontrol.model.ServiceOrderService();
 
+                serviceOrderService.setServiceOrder(serviceOrder);
                 serviceOrderService.setService(service);
                 serviceOrderService.setQuantity(serviceDTO.getQuantity());
                 serviceOrderService.setUnitPrice(serviceDTO.getUnitPrice());
@@ -77,6 +72,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
                 ServiceOrderPart serviceOrderPart = new ServiceOrderPart();
 
+                serviceOrderPart.setServiceOrder(serviceOrder);
                 serviceOrderPart.setPart(part);
                 serviceOrderPart.setQuantity(partDTO.getQuantity());
                 serviceOrderPart.setUnitPrice(partDTO.getUnitPrice());

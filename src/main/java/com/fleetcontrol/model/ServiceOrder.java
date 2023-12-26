@@ -1,21 +1,17 @@
 package com.fleetcontrol.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-
 @Entity
 @Table(name = "service_orders")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class ServiceOrder {
 
@@ -29,16 +25,14 @@ public class ServiceOrder {
 
     private LocalDateTime closeDate;
 
-    @ManyToMany(cascade=CascadeType.PERSIST)
-    @JoinTable(name = "service_orders_services",
-            joinColumns = @JoinColumn(name = "service_order_fk"),
-            inverseJoinColumns = @JoinColumn(name = "service_order_service_fk"))
+    @JsonBackReference
+    @OneToMany(mappedBy = "serviceOrder", cascade = CascadeType.ALL)
     private List<ServiceOrderService> services;
 
-    @ManyToMany(cascade=CascadeType.PERSIST)
-    @JoinTable(name = "service_orders_parts",
-            joinColumns = @JoinColumn(name = "service_order_fk"),
-            inverseJoinColumns = @JoinColumn(name = "service_order_part_fk"))
+    @JsonBackReference
+    @OneToMany(mappedBy = "serviceOrder", cascade = CascadeType.ALL)
     private List<ServiceOrderPart> parts;
+
+
 
 }

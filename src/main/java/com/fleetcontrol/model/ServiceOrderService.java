@@ -1,40 +1,31 @@
 package com.fleetcontrol.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fleetcontrol.dto.ServiceOrderRequestDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "service_order_services")
 @Entity
+@Table(name = "service_order_services")
 
-public class ServiceOrderService {
+public class ServiceOrderService implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "service_order_id")
+    @JsonIgnoreProperties("service_orders")
+    private ServiceOrder serviceOrder;
 
-    @OneToOne
+    @Id
+    @ManyToOne
     @JoinColumn(name = "service_id")
+    @JsonIgnoreProperties("services")
     private Service service;
 
     private Integer quantity;
 
     private Double unitPrice;
-
-    @ManyToMany(mappedBy = "services")
-    @JsonIgnore
-    private List<ServiceOrder> serviceOrder;
 
 }
