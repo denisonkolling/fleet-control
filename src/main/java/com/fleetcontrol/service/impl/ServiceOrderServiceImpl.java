@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class ServiceOrderServiceImpl implements ServiceOrderService {
@@ -27,6 +28,9 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Autowired
     private PartRepository partRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public ServiceOrder createServiceOrder(ServiceOrderRequestDTO form) {
@@ -96,65 +100,34 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
         List<ServiceOrder> orders = serviceOrderRepository.findAll();
 
-        List<ServiceOrderResponse> serviceOrderResponses = new ArrayList<>();
-
-        for (ServiceOrder serviceOrders : orders) {
-
-            ServiceOrderResponse serviceOrderResponse = new ServiceOrderResponse();
-
-            List<com.fleetcontrol.model.ServiceOrderService> services = serviceOrders.getServices();
-
-            List<ServiceOrderPart> parts = serviceOrders.getParts();
-
-            if (services != null && !services.isEmpty()) {
-
-                List<ServiceOrderServiceResponse> servicesResponse = new ArrayList<>();
-
-                for (com.fleetcontrol.model.ServiceOrderService serviceOrdersServices : services) {
-
-                    ServiceOrderServiceResponse serviceOrderServiceResponse = new ServiceOrderServiceResponse();
-
-                    serviceOrderServiceResponse.setServiceId(serviceOrdersServices.getService().getId());
-                    serviceOrderServiceResponse.setName(serviceOrdersServices.getService().getServiceName());
-                    serviceOrderServiceResponse.setQuantity(serviceOrdersServices.getQuantity());
-                    serviceOrderServiceResponse.setUnitPrice(serviceOrdersServices.getUnitPrice());
-                    servicesResponse.add(serviceOrderServiceResponse);
-                }
-
-                serviceOrderResponse.setServices(servicesResponse);
-
-            }
-
-            if (parts != null && !parts.isEmpty()) {
-
-                List<ServiceOrderPartResponse> partsResponse = new ArrayList<>();
-
-                for (ServiceOrderPart serviceOrdersParts : parts) {
-
-                    ServiceOrderPartResponse serviceOrderPartResponse = new ServiceOrderPartResponse();
-
-                    serviceOrderPartResponse.setPartId(serviceOrdersParts.getPart().getId());
-                    serviceOrderPartResponse.setName(serviceOrdersParts.getPart().getPartName());
-                    serviceOrderPartResponse.setQuantity(serviceOrdersParts.getQuantity());
-                    serviceOrderPartResponse.setUnitPrice(serviceOrdersParts.getUnitPrice());
-                    partsResponse.add(serviceOrderPartResponse);
-                }
-
-                serviceOrderResponse.setParts(partsResponse);
-
-            }
-
-            serviceOrderResponse.setPlate(serviceOrders.getPlate());
-            serviceOrderResponse.setOpenDate(serviceOrders.getOpenDate());
-            serviceOrderResponse.setId(serviceOrders.getId());
-
-
-            serviceOrderResponses.add(serviceOrderResponse);
-        }
-
-        return serviceOrderResponses;
-
+        return orders.stream()
+                .map(this::mapToServiceOrderResponse)
+                .collect(Collectors.toList());
     }
 
+    private ServiceOrderResponse mapToServiceOrderResponse(ServiceOrder serviceOrder) {
+        ServiceOrderResponse serviceOrderResponse = modelMapper.map(serviceOrder, ServiceOrderResponse.class);
+
+        List<ServiceOrderServiceResponse> servicesResponse = serviceOrder.getServices().stream()
+                .map(serviceOrderService -> {
+                    ServiceOrderServiceResponse serviceOrderServiceResponse = modelMapper.map(serviceOrderService, ServiceOrderServiceResponse.class);
+                    serviceOrderServiceResponse.setName(serviceOrderService.getService().getServiceName());
+                    return serviceOrderServiceResponse;
+                })
+                .collect(Collectors.toList());
+
+        List<ServiceOrderPartResponse> partsResponse = serviceOrder.getParts().stream()
+                .map(serviceOrderPart -> {
+                    ServiceOrderPartResponse serviceOrderPartResponse = modelMapper.map(serviceOrderPart, ServiceOrderPartResponse.class);
+                    serviceOrderPartResponse.setName(serviceOrderPart.getPart().getPartName());
+                    return serviceOrderPartResponse;
+                })
+                .collect(Collectors.toList());
+
+        serviceOrderResponse.setServices(servicesResponse);
+        serviceOrderResponse.setParts(partsResponse);
+
+        return serviceOrderResponse;
+    }
 }
 
