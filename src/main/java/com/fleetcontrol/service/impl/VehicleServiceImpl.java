@@ -53,4 +53,9 @@ public class VehicleServiceImpl implements VehicleService {
 //        oldVehicle.setYear(v.getYear());
         return vehicleRepository.save(oldVehicle);
     }
+
+    @Override
+    public Vehicle getVehicleByPlate(String plate) {
+        return vehicleRepository.findByPlate(plate);
+    }
 }

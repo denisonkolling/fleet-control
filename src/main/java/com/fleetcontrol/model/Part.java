@@ -25,7 +25,4 @@ public class Part {
 
     private Double partPrice;
 
-    @ManyToOne
-    @JsonIgnore
-    private ServiceOrder serviceOrder;
 }

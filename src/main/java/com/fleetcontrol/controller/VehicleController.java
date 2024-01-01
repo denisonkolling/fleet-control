@@ -38,4 +38,9 @@ public class VehicleController {
         return new ResponseEntity<>(vehicleService.editVehicle(vehicle, id), HttpStatus.CREATED);
     }
 
+    @GetMapping("/vehicle/plate/{plate}")
+    public ResponseEntity<?> getVehicleByPlate(@PathVariable String plate){
+        return new ResponseEntity<>(vehicleService.getVehicleByPlate(plate), HttpStatus.OK);
+    }
+
 }

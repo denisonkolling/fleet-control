@@ -16,5 +16,7 @@ public interface VehicleService {
 
     Vehicle editVehicle(Vehicle vehicle, Long id);
 
+    Vehicle getVehicleByPlate(String plate);
+
 
 }
