@@ -19,7 +19,7 @@ public class ServiceController {
         return new ResponseEntity<>(serviceService.createService(service), HttpStatus.CREATED);
     }
 
-    @GetMapping("/service/{name}")
+    @GetMapping("/{name}")
     private ResponseEntity<?> findService(@PathVariable String name) {
         return new ResponseEntity<>(serviceService.findServiceByName(name), HttpStatus.OK);
     }

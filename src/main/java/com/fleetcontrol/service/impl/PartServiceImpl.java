@@ -6,6 +6,8 @@ import com.fleetcontrol.service.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PartServiceImpl implements PartService {
 
@@ -16,5 +18,10 @@ public class PartServiceImpl implements PartService {
     @Override
     public Part createPart(Part part) {
         return partRepository.save(part);
+    }
+
+    @Override
+    public List<Part> findByPartName(String name) {
+        return partRepository.findByPartName(name);
     }
 }
