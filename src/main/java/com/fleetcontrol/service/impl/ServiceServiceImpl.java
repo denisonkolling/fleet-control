@@ -5,6 +5,8 @@ import com.fleetcontrol.repository.ServiceRepository;
 import com.fleetcontrol.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {
 
@@ -14,5 +16,10 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service createService(Service service) {
         return serviceRepository.save(service);
+    }
+
+    @Override
+    public List <Service> findServiceByName(String serviceName) {
+        return serviceRepository.findByServiceName(serviceName);
     }
 }
