@@ -35,6 +35,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         List<Expense> tripExpenses = trip.getExpenses();
 
+        tripExpenses.add(expense);
+
         List<Double> expensesValue = new ArrayList<>();
 
         for (Expense expenses: tripExpenses){
