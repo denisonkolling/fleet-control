@@ -42,4 +42,9 @@ public class ExpenseController {
         return new ResponseEntity<>(expenseService.findByCategoryContaining(search), HttpStatus.OK);
 
     }
+
+    @GetMapping("category")
+    public ResponseEntity<List<String>> findAllCategories() {
+        return new ResponseEntity<>(expenseService.findAllCategories(), HttpStatus.OK);
+    }
 }

@@ -73,4 +73,9 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expenseRepository.findByCategoryContaining(string);
     }
 
+    @Override
+    public List<String> findAllCategories() {
+        return expenseRepository.findAllCategories();
+    }
+
 }
