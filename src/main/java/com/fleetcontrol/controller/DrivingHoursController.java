@@ -1,5 +1,6 @@
 package com.fleetcontrol.controller;
 
+import com.fleetcontrol.dto.DrivingHoursDTO;
 import com.fleetcontrol.model.DrivingHours;
 import com.fleetcontrol.service.DrivingHoursService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class DrivingHoursController {
     DrivingHoursService drivingHoursService;
 
     @PostMapping
-    public ResponseEntity<?> createDrivingHours(@RequestBody DrivingHours drivingHours) {
+    public ResponseEntity<?> createDrivingHours(@RequestBody DrivingHoursDTO drivingHours) {
         return new ResponseEntity<>(drivingHoursService.createDrivingHours(drivingHours), HttpStatus.CREATED);
     }
 

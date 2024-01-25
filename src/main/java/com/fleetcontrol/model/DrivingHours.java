@@ -13,12 +13,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
-@Builder
 @Entity
 @Table(name = "driving_hours")
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 
 public class DrivingHours {
 
@@ -30,9 +27,8 @@ public class DrivingHours {
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
-    private List<LocalDateTime> startDrivingTime = new ArrayList<>();
+    private LocalDateTime startDrivingTime;
 
-    private List<LocalDateTime> endDrivingTime = new ArrayList<>();
-
+    private LocalDateTime endDrivingTime;
 
 }
