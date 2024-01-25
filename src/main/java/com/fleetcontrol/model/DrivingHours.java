@@ -16,6 +16,9 @@ import java.util.List;
 @Entity
 @Table(name = "driving_hours")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class DrivingHours {
 

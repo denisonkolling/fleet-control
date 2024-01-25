@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class DrivingHoursServiceImpl implements DrivingHoursService {
@@ -25,13 +26,14 @@ public class DrivingHoursServiceImpl implements DrivingHoursService {
 
         DrivingHours drivingHours = new DrivingHours();
 
-        Driver driver = driverRepository.findById(drivingHoursDTO.getDriverId()).get();
+        Driver driver = driverRepository.findById(drivingHoursDTO.getDriverId()).orElseThrow(() -> new NoSuchElementException("Empty driver."));
 
         drivingHours.setDriver(driver);
-        drivingHours.setStartDrivingTime(drivingHours.getStartDrivingTime());
+        drivingHours.setStartDrivingTime(drivingHoursDTO.getStartDrivingTime());
         drivingHours.setEndDrivingTime(drivingHoursDTO.getEndDrivingTime());
 
         return drivingHoursRepository.save(drivingHours);
+
     }
 
     @Override
