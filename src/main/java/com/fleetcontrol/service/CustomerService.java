@@ -1,10 +1,8 @@
 package com.fleetcontrol.service;
 
 import com.fleetcontrol.model.Customer;
-import com.fleetcontrol.model.Driver;
 
 import java.util.List;
-
 
 public interface CustomerService {
 

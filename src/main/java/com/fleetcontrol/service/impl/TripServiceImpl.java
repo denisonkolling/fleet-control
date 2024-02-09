@@ -4,7 +4,6 @@ import com.fleetcontrol.dto.TripDto;
 import com.fleetcontrol.model.Trip;
 import com.fleetcontrol.repository.TripRepository;
 import com.fleetcontrol.service.TripService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.List;
 @Service
 public class TripServiceImpl implements TripService {
 
-    @Autowired
     private TripRepository tripRepository;
+
+    public TripServiceImpl(TripRepository tripRepository) {
+        this.tripRepository = tripRepository;
+    }
 
 
     @Override

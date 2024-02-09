@@ -1,8 +1,7 @@
 package com.fleetcontrol.controller;
 
-import com.fleetcontrol.dto.InvoiceDto;
+import com.fleetcontrol.dto.InvoiceRequest;
 import com.fleetcontrol.service.InvoiceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("invoice")
 public class InvoiceController {
 
-    @Autowired
-    private InvoiceService invoiceService;
+    private final InvoiceService invoiceService;
+
+    public InvoiceController(InvoiceService invoiceService) {
+        this.invoiceService = invoiceService;
+    }
 
 
     @PostMapping
-    public ResponseEntity<?> createInvoice(@RequestBody InvoiceDto invoiceDto) {
-        return new ResponseEntity<>(invoiceService.createInvoice(invoiceDto), HttpStatus.CREATED);
+    public ResponseEntity<?> createInvoice(@RequestBody InvoiceRequest invoiceRequest) {
+        return new ResponseEntity<>(invoiceService.createInvoice(invoiceRequest), HttpStatus.CREATED);
     }
 
     @GetMapping

@@ -1,7 +1,6 @@
 package com.fleetcontrol.service;
 
 import com.fleetcontrol.model.Driver;
-import com.fleetcontrol.model.Vehicle;
 
 import java.util.List;
 

@@ -19,6 +19,6 @@ public class ServiceOrderRequestDTO {
 
     private List<ServiceOrderServiceDTO> services;
 
-    private List<ServiceOrderPartDTO> parts;
+    private List<ServiceOrderPartRequest> parts;
 
 }

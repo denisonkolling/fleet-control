@@ -3,7 +3,6 @@ package com.fleetcontrol.service.impl;
 import com.fleetcontrol.model.Driver;
 import com.fleetcontrol.repository.DriverRepository;
 import com.fleetcontrol.service.DriverService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,12 @@ import java.util.List;
 @Service
 public class DriverServiceImpl implements DriverService {
 
-    @Autowired
+
     private DriverRepository driverRepository;
+
+    public DriverServiceImpl(DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
+    }
 
     @Override
     public Driver createDriver(Driver driver) {

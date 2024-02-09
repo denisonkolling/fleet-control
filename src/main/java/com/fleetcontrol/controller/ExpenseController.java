@@ -1,9 +1,7 @@
 package com.fleetcontrol.controller;
 
 import com.fleetcontrol.dto.ExpenseRequest;
-import com.fleetcontrol.model.Expense;
 import com.fleetcontrol.service.ExpenseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +12,11 @@ import java.util.List;
 @RequestMapping("/expense")
 public class ExpenseController {
 
-    @Autowired
-    private ExpenseService expenseService;
+    private final ExpenseService expenseService;
+
+    public ExpenseController(ExpenseService expenseService) {
+        this.expenseService = expenseService;
+    }
 
     @PostMapping
     public ResponseEntity<?> createExpense(@RequestBody ExpenseRequest form) {

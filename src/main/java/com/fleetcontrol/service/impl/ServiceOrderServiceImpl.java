@@ -11,7 +11,6 @@ import com.fleetcontrol.repository.*;
 import com.fleetcontrol.service.ServiceOrderService;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,17 +19,20 @@ import java.util.stream.Collectors;
 @org.springframework.stereotype.Service
 public class ServiceOrderServiceImpl implements ServiceOrderService {
 
-    @Autowired
     private ServiceOrderRepository serviceOrderRepository;
 
-    @Autowired
     private ServiceRepository serviceRepository;
 
-    @Autowired
     private PartRepository partRepository;
 
-    @Autowired
     private ModelMapper modelMapper;
+
+    public ServiceOrderServiceImpl(ServiceOrderRepository serviceOrderRepository, ServiceRepository serviceRepository, PartRepository partRepository, ModelMapper modelMapper) {
+        this.serviceOrderRepository = serviceOrderRepository;
+        this.serviceRepository = serviceRepository;
+        this.partRepository = partRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public ServiceOrder createServiceOrder(ServiceOrderRequestDTO form) {
@@ -39,7 +41,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
         List<ServiceOrderServiceDTO> serviceDtos = form.getServices();
 
-        List<ServiceOrderPartDTO> partDtos = form.getParts();
+        List<ServiceOrderPartRequest> partDtos = form.getParts();
 
         if (serviceDtos != null && !serviceDtos.isEmpty()) {
 
@@ -68,7 +70,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
             List<ServiceOrderPart> parts = new ArrayList<>();
 
-            for (ServiceOrderPartDTO partDTO : partDtos) {
+            for (ServiceOrderPartRequest partDTO : partDtos) {
 
                 Part part = partRepository.findById(partDTO.getPartId()).orElseThrow(() -> new EntityNotFoundException("Part not found"));
 

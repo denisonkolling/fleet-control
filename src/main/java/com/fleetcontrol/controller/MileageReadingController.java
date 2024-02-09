@@ -1,9 +1,7 @@
 package com.fleetcontrol.controller;
 
 import com.fleetcontrol.dto.MileageReadingRequest;
-import com.fleetcontrol.dto.TyreReadingRequest;
 import com.fleetcontrol.service.MileageReadingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 public class MileageReadingController {
 
-    @Autowired
-    private MileageReadingService mileageReadingService;
+    private final MileageReadingService mileageReadingService;
+
+    public MileageReadingController(MileageReadingService mileageReadingService) {
+        this.mileageReadingService = mileageReadingService;
+    }
 
     @PostMapping
     public ResponseEntity<?> createMileageReading(@RequestBody MileageReadingRequest form) {

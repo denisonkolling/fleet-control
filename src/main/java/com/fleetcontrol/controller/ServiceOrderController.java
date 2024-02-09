@@ -1,9 +1,7 @@
 package com.fleetcontrol.controller;
 
-import com.fleetcontrol.dto.ServiceOrderRequest;
 import com.fleetcontrol.dto.ServiceOrderRequestDTO;
 import com.fleetcontrol.service.ServiceOrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/repair-order")
 public class ServiceOrderController {
 
-    @Autowired
-    private ServiceOrderService serviceOrderService;
+    private final ServiceOrderService serviceOrderService;
+
+    public ServiceOrderController(ServiceOrderService serviceOrderService) {
+        this.serviceOrderService = serviceOrderService;
+    }
 
     @PostMapping
     private ResponseEntity<?> createServiceOrder(@RequestBody ServiceOrderRequestDTO form){

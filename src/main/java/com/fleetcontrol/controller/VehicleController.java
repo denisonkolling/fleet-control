@@ -2,7 +2,6 @@ package com.fleetcontrol.controller;
 
 import com.fleetcontrol.model.Vehicle;
 import com.fleetcontrol.service.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class VehicleController {
 
-    @Autowired
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
+
+    public VehicleController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
+    }
 
     @PostMapping("/vehicle")
     public ResponseEntity<?> createVehicle(@RequestBody Vehicle vehicle){

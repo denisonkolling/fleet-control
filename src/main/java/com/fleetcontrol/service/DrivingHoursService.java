@@ -1,13 +1,13 @@
 package com.fleetcontrol.service;
 
-import com.fleetcontrol.dto.DrivingHoursDTO;
+import com.fleetcontrol.dto.DrivingHoursRequest;
 import com.fleetcontrol.model.DrivingHours;
 
 import java.util.List;
 
 public interface DrivingHoursService {
 
-    DrivingHours createDrivingHours(DrivingHoursDTO drivingHoursDTO);
+    DrivingHours createDrivingHours(DrivingHoursRequest drivingHoursRequest);
 
     List<DrivingHours> getAllDrivingHours();
 

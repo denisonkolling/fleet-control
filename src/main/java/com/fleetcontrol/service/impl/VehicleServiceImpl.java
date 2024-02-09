@@ -3,7 +3,6 @@ package com.fleetcontrol.service.impl;
 import com.fleetcontrol.model.Vehicle;
 import com.fleetcontrol.repository.VehicleRepository;
 import com.fleetcontrol.service.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
-    @Autowired
     private VehicleRepository vehicleRepository;
+
+    public VehicleServiceImpl(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
 
     @Override
     public Vehicle createVehicle(Vehicle vehicle) {

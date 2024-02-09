@@ -1,9 +1,7 @@
 package com.fleetcontrol.controller;
 
-import com.fleetcontrol.dto.ProductDto;
 import com.fleetcontrol.model.Product;
 import com.fleetcontrol.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/product")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @PostMapping
     public ResponseEntity<?> createProduct(@RequestBody Product product){

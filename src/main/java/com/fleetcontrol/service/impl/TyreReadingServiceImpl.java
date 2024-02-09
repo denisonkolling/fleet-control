@@ -6,7 +6,6 @@ import com.fleetcontrol.model.TyreReading;
 import com.fleetcontrol.repository.TyreReadingRepository;
 import com.fleetcontrol.repository.TyreRepository;
 import com.fleetcontrol.service.TyreReadingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +13,14 @@ import java.util.List;
 @Service
 public class TyreReadingServiceImpl implements TyreReadingService {
 
-    @Autowired
     private TyreReadingRepository tyreReadingRepository;
 
-    @Autowired
     private TyreRepository tyreRepository;
+
+    public TyreReadingServiceImpl(TyreReadingRepository tyreReadingRepository, TyreRepository tyreRepository) {
+        this.tyreReadingRepository = tyreReadingRepository;
+        this.tyreRepository = tyreRepository;
+    }
 
     @Override
     public TyreReading createTyreReading(TyreReadingRequest form) {

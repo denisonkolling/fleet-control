@@ -1,9 +1,7 @@
 package com.fleetcontrol.controller;
 
-import com.fleetcontrol.model.Driver;
 import com.fleetcontrol.model.Tyre;
 import com.fleetcontrol.service.TyreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TyreController {
 
-    @Autowired
-    private TyreService tyreService;
+    private final TyreService tyreService;
+
+    public TyreController(TyreService tyreService) {
+        this.tyreService = tyreService;
+    }
 
     @PostMapping("/tyre")
     public ResponseEntity<?> createTyre(@RequestBody Tyre tyre){

@@ -3,7 +3,7 @@ package com.fleetcontrol.dto;
 import lombok.Data;
 
 @Data
-public class ServiceOrderPartDTO {
+public class ServiceOrderPartRequest {
 
     private Long partId;
 

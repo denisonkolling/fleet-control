@@ -7,7 +7,6 @@ import com.fleetcontrol.repository.MileageReadingRepository;
 import com.fleetcontrol.repository.VehicleRepository;
 import com.fleetcontrol.service.MileageReadingService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +14,14 @@ import java.util.List;
 @Service
 public class MileageReadingServiceImpl implements MileageReadingService {
 
-    @Autowired
     private MileageReadingRepository mileageReadingRepository;
 
-    @Autowired
     private VehicleRepository vehicleRepository;
+
+    public MileageReadingServiceImpl(MileageReadingRepository mileageReadingRepository, VehicleRepository vehicleRepository) {
+        this.mileageReadingRepository = mileageReadingRepository;
+        this.vehicleRepository = vehicleRepository;
+    }
 
     @Override
     public MileageReading createMileageReading(MileageReadingRequest form) {

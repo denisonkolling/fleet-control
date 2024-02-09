@@ -1,12 +1,11 @@
 package com.fleetcontrol.dto;
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Data
-public class DrivingHoursDTO {
+public class DrivingHoursRequest {
 
     private Long driverId;
 

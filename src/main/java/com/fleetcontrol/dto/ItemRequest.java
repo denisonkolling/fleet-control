@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @NoArgsConstructor
 
-public class ItemDto {
+public class ItemRequest {
 
     private Long productId;
 

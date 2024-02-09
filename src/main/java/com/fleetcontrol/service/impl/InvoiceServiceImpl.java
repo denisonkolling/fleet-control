@@ -1,7 +1,7 @@
 package com.fleetcontrol.service.impl;
 
-import com.fleetcontrol.dto.InvoiceDto;
-import com.fleetcontrol.dto.ItemDto;
+import com.fleetcontrol.dto.InvoiceRequest;
+import com.fleetcontrol.dto.ItemRequest;
 import com.fleetcontrol.infra.InvoiceNotFoundException;
 import com.fleetcontrol.model.*;
 import com.fleetcontrol.repository.CustomerRepository;
@@ -10,59 +10,61 @@ import com.fleetcontrol.repository.ItemRepository;
 import com.fleetcontrol.repository.ProductRepository;
 import com.fleetcontrol.service.InvoiceService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
 
-    @Autowired
+
     private InvoiceRepository invoiceRepository;
 
-    @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
     private ItemRepository itemRepository;
 
-    @Autowired
     private ProductRepository productRepository;
 
+    public InvoiceServiceImpl(InvoiceRepository invoiceRepository, CustomerRepository customerRepository, ItemRepository itemRepository, ProductRepository productRepository) {
+        this.invoiceRepository = invoiceRepository;
+        this.customerRepository = customerRepository;
+        this.itemRepository = itemRepository;
+        this.productRepository = productRepository;
+    }
+
     @Override
-    public Invoice createInvoice(InvoiceDto invoiceDto) {
+    public Invoice createInvoice(InvoiceRequest invoiceRequest) {
         Invoice invoice = new Invoice();
 
-        Customer issuer = customerRepository.findById(invoiceDto.getIssuerId())
+        Customer issuer = customerRepository.findById(invoiceRequest.getIssuerId())
                 .orElseThrow(() -> new IllegalArgumentException("Issuer not found"));
-        Customer buyer = customerRepository.findById(invoiceDto.getBuyerId())
+        Customer buyer = customerRepository.findById(invoiceRequest.getBuyerId())
                 .orElseThrow(() -> new IllegalArgumentException("Buyer not found"));
 
-        invoice.setNumber(invoiceDto.getNumber());
-        invoice.setDate(invoiceDto.getDate());
+        invoice.setNumber(invoiceRequest.getNumber());
+        invoice.setDate(invoiceRequest.getDate());
         invoice.setIssuer(issuer);
         invoice.setBuyer(buyer);
 
-        List<ItemDto> itemDtos = invoiceDto.getItems();
+        List<ItemRequest> itemRequests = invoiceRequest.getItems();
 
-        if (itemDtos != null && !itemDtos.isEmpty()) {
+        if (itemRequests != null && !itemRequests.isEmpty()) {
 
             List<Item> items = new ArrayList<>();
 
             List<Double> itemsValue = new ArrayList<>();
 
-            for (ItemDto itemDto : itemDtos) {
+            for (ItemRequest itemRequest : itemRequests) {
 
-                Product product = productRepository.findById(itemDto.getProductId()).orElseThrow(() -> new EntityNotFoundException("Product not found"));
+                Product product = productRepository.findById(itemRequest.getProductId()).orElseThrow(() -> new EntityNotFoundException("Product not found"));
 
                 Item item = new Item();
 
                 item.setProduct(product);
-                item.setQuantity(itemDto.getQuantity());
-                item.setUnitPrice(itemDto.getUnitPrice());
+                item.setQuantity(itemRequest.getQuantity());
+                item.setUnitPrice(itemRequest.getUnitPrice());
 
                 items.add(item);
 

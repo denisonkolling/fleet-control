@@ -6,7 +6,6 @@ import com.fleetcontrol.model.Trip;
 import com.fleetcontrol.repository.ExpenseRepository;
 import com.fleetcontrol.repository.TripRepository;
 import com.fleetcontrol.service.ExpenseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,11 +14,14 @@ import java.util.List;
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
 
-    @Autowired
-    private ExpenseRepository expenseRepository;
 
-    @Autowired
+    private ExpenseRepository expenseRepository;
     private TripRepository tripRepository;
+
+    public ExpenseServiceImpl(ExpenseRepository expenseRepository, TripRepository tripRepository) {
+        this.expenseRepository = expenseRepository;
+        this.tripRepository = tripRepository;
+    }
 
 
     @Override

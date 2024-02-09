@@ -3,7 +3,6 @@ package com.fleetcontrol.service.impl;
 import com.fleetcontrol.model.Tyre;
 import com.fleetcontrol.repository.TyreRepository;
 import com.fleetcontrol.service.TyreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class TyreServiceImpl implements TyreService {
 
-    @Autowired
     private TyreRepository tyreRepository;
+
+    public TyreServiceImpl(TyreRepository tyreRepository) {
+        this.tyreRepository = tyreRepository;
+    }
 
     @Override
     public Tyre createTyre(Tyre tyre) {

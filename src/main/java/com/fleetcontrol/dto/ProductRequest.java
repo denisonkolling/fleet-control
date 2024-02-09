@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @NoArgsConstructor
 
-public class ProductDto {
+public class ProductRequest {
 
     private String name;
 

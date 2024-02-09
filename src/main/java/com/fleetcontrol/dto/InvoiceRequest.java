@@ -1,7 +1,5 @@
 package com.fleetcontrol.dto;
 
-import com.fleetcontrol.model.Customer;
-import com.fleetcontrol.model.Item;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +15,7 @@ import java.util.List;
 @Embeddable
 @NoArgsConstructor
 
-public class InvoiceDto {
+public class InvoiceRequest {
 
     private Long number;
 
@@ -27,6 +25,6 @@ public class InvoiceDto {
 
     private Long buyerId;
 
-    private List<ItemDto> items;
+    private List<ItemRequest> items;
 
 }

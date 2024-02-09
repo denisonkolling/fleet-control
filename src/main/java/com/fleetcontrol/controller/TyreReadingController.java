@@ -2,7 +2,6 @@ package com.fleetcontrol.controller;
 
 import com.fleetcontrol.dto.TyreReadingRequest;
 import com.fleetcontrol.service.TyreReadingService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 public class TyreReadingController {
 
-    @Autowired
-    private TyreReadingService tyreReadingService;
+    private final TyreReadingService tyreReadingService;
+
+    public TyreReadingController(TyreReadingService tyreReadingService) {
+        this.tyreReadingService = tyreReadingService;
+    }
 
     @PostMapping
     public ResponseEntity<?> createTyreReading(@RequestBody TyreReadingRequest form){

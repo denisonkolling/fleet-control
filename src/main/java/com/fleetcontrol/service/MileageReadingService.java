@@ -2,7 +2,6 @@ package com.fleetcontrol.service;
 
 import com.fleetcontrol.dto.MileageReadingRequest;
 import com.fleetcontrol.model.MileageReading;
-import com.fleetcontrol.model.TyreReading;
 
 import java.util.List;
 
