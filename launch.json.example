@@ -1,0 +1,14 @@
+#vscode launch config to .env file
+
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "FleetControlApplication",
+            "request": "launch",
+            "mainClass": "com.fleetcontrol.FleetControlApplication",
+            "projectName": "fleet-control",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

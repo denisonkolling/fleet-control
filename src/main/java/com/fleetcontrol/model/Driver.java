@@ -1,6 +1,7 @@
 package com.fleetcontrol.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,16 +23,22 @@ public class Driver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String firstName;
 
+    @NotBlank
     private String lastName;
 
+    @NotBlank
     private LocalDate birthday;
 
+    @NotBlank
     private String licenseId;
 
+    @NotBlank
     private LocalDate expiryDate;
 
+    @NotBlank
     private String licenseClass;
 
 }
